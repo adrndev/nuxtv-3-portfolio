@@ -1,10 +1,31 @@
 <script setup>
-import { onMounted } from 'vue';
+// import { onMounted } from 'vue';
 
 function scrollToFirstSection() {
   const firstSection = document.querySelector('.section')
   firstSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
 }
+
+onMounted(() => {
+  document.addEventListener('scroll', () => {
+    const scrollY = window.scrollY
+    const titleElement = document.querySelector('.web-title h1')
+    
+    if(scrollY !== 0 && scrollY < 80) {
+      let textShadow = ''
+      for(let i = 0; i < scrollY; i++) {
+        textShadow += `${i}px ${i}px black`
+
+        if(i < scrollY - 1) {
+          textShadow += ', '
+        }
+      }
+      titleElement.style.textShadow = textShadow
+    } else if(scrollY == 0) {
+      titleElement.style.textShadow = ''
+    }
+})
+})
 </script>
 
 <template>
@@ -82,14 +103,14 @@ function scrollToFirstSection() {
         </div>
       </section>
 
-      <div id="stack" class="showcase-sections pb-32 md:pb-60 bg-yellow-light">
+      <div id="stack" class="showcase-sections pb-32 md:pb-60 bg-yellow-light sticky top-0">
         <Showcase />
       </div>
 
       <div class="polygon-clip bg-dark-gray border-dark-gray"></div>
       <section
         id="projects"
-        class="projects px-4 bg-dark-gray text-gray-main pt-8 md:pt-20 pb-80 overflow-x-hidden"
+        class="projects px-4 bg-dark-gray text-gray-main pt-8 md:pt-20 pb-80 overflow-x-hidden relative"
       >
         <Projects />
       </section>
