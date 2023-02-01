@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Jost&family=Koulen&family=Poppins:wght@100&family=Roboto&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply scroll-smooth;
+}
+
+@layer utilities {
+  .polygon-clip {
+    clip-path: ellipse(60% 100% at 50% 100%);
+    @apply absolute transform w-full -translate-y-3/4 border-b-2 h-[10vh] z-[2] md:translate-y-[calc(-100%+1px)];
+  }
+
+  .section {
+    @apply relative max-w-[1000px] mx-auto;
+  }
+
+  .section.dark {
+    @apply bg-dark-gray;
+  }
+
+  .text-shadow {
+    text-shadow: 8px 8px var(--tw-shadow-color);
+    @apply shadow-[#fff195];
+  }
+
+  .section-title {
+    @apply text-[1.5rem] relative flex items-center gap-8 mb-8 font-monospace lowercase text-dark-gray;
+  }
+
+  .section-title::before,
+  .section-title::after {
+    @apply content-[''] bg-yellow-main h-[2px] flex-1;
+  }
+}
