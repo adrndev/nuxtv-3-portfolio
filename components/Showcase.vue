@@ -44,10 +44,6 @@ const sections = [
         path: 'sass/sass-original.svg',
       },
       {
-        title: 'Git',
-        path: 'git/git-original.svg',
-      },
-      {
         title: 'GraphQL',
         path: 'graphql/graphql-plain.svg',
       },
@@ -75,14 +71,6 @@ const sections = [
         title: 'Jest',
         path: 'jest/jest-plain.svg',
       },
-      {
-        title: 'Docker',
-        path: 'docker/docker-original.svg',
-      },
-      {
-        title: 'Kubernetes',
-        path: 'kubernetes/kubernetes-plain.svg',
-      },
     ],
   },
   {
@@ -109,6 +97,14 @@ const sections = [
         path: 'linux/linux-original.svg',
       },
       {
+        title: 'Bash',
+        path: 'bash/bash-original.svg',
+      },
+      {
+        title: 'Git',
+        path: 'git/git-original.svg',
+      },
+      {
         title: 'npm',
         path: 'npm/npm-original-wordmark.svg',
       },
@@ -131,6 +127,14 @@ const sections = [
       {
         title: 'Wordpress',
         path: 'wordpress/wordpress-original.svg',
+      },
+      {
+        title: 'Docker',
+        path: 'docker/docker-original.svg',
+      },
+      {
+        title: 'Kubernetes',
+        path: 'kubernetes/kubernetes-plain.svg',
       },
     ],
   },
