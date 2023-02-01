@@ -32,8 +32,8 @@ onMounted(() => {
   <div class="wrap">
     <Header />
     <main class="Main bg-yellow-light">
+      <MyParticles />
       <div class="Hero h-screen bg-dark-gray overflow-hidden flex items-center">
-        <MyParticles />
         <div
           class="web-title font-poppins text-gray-main w-full text-center lg:text-left lg:mx-32 2xl:mx-72"
         >
