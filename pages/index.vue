@@ -5,27 +5,6 @@ function scrollToFirstSection() {
   const firstSection = document.querySelector('.section')
   firstSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
 }
-
-// onMounted(() => {
-//   document.addEventListener('scroll', () => {
-//     const scrollY = window.scrollY
-//     const titleElement = document.querySelector('.web-title h1')
-    
-//     if(scrollY !== 0 && scrollY < 80) {
-//       let textShadow = ''
-//       for(let i = 0; i < scrollY; i++) {
-//         textShadow += `${i}px ${i}px black`
-
-//         if(i < scrollY - 1) {
-//           textShadow += ', '
-//         }
-//       }
-//       titleElement.style.textShadow = textShadow
-//     } else if(scrollY == 0) {
-//       titleElement.style.textShadow = ''
-//     }
-// })
-// })
 </script>
 
 <template>
