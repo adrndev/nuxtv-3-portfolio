@@ -166,7 +166,7 @@ const svgs = import.meta.globEager('/assets/icons/**/*.svg')
           :title="item.title"
           tabindex="0"
           :data-title="item.title"
-          :class="{ 'opacity-100': props.longScroll > (index + 1) * 128}"
+          :class="{ '!opacity-100': props.longScroll > (index + 1) * 64}"
         >
           <img
             :src="svgs[`/assets/icons/${item.path}`].default"
