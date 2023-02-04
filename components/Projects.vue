@@ -1,15 +1,26 @@
 <script setup>
 const projects = [
+    // {
+    //     title: '(WIP) Gaming platform',
+    //     repoUrl: 'https://github.com/Gamingxplatform',
+    //     description: 'Example description',
+    //     cover: 'url',
+    //     stack: [
+    //         'Node/express',
+    //         'Typescript',
+    //         'MongoDB',
+    //         'Prisma'
+    //     ]
+    // },
     {
-        title: '(WIP) Gaming platform',
+        title: 'Node-chat',
         repoUrl: 'https://github.com/Gamingxplatform',
         description: 'Example description',
-        cover: 'url',
+        cover: '../assets/images/projects/node-chat.png',
         stack: [
             'Node/express',
-            'Typescript',
-            'MongoDB',
-            'Prisma'
+            'socket.io',
+            'Pug'
         ]
     }
 ]
@@ -18,5 +29,6 @@ const projects = [
 <template>
     <div class="section">
         aa
+        <!-- <h2 class="text-yellow-main section-title">Elo</h2> -->
     </div>
 </template>

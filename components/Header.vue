@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
+const emit = defineEmits(['scrollChanged'])
 
 let scrollTop = ref(0), scrolled = ref(false)
 const menuItems = [
@@ -21,22 +22,49 @@ const menuItems = [
   },
 ]
 
+let overScroll = ref(0)
+
 function handleScroll() {
   scrollTop.value = document.documentElement.scrollTop
 
-  document.querySelectorAll('.Header .menu .menu-item a').forEach((item) => {
+  const itemElements = document.querySelectorAll('.Header .menu .menu-item a')
+  const activeSection = Array.from(itemElements).reverse().find((item) => {
     const section = document.querySelector(item.getAttribute('href'))
 
-    if (
-      scrollTop.value + window.innerHeight / 2 > section.offsetTop &&
-      scrollTop.value + window.innerHeight / 2 <
-        section.offsetTop + section.offsetHeight
-    ) {
-      item.parentElement.classList.add('active')
-    } else {
-      item.parentElement.classList.remove('active')
-    }
+    return scrollTop.value + window.innerHeight / 2 > section.offsetTop &&
+    scrollTop.value + window.innerHeight / 2 <
+    section.offsetTop + section.offsetHeight
   })
+
+  itemElements.forEach(el => el.parentElement.classList.remove('active'))
+
+  activeSection?.parentElement.classList.add('active')
+
+  emit('scrollChanged', scrollTop.value)
+
+  if(scrollTop.value > 300) {
+    overScroll.value++
+    document.body.scrollTo({ y: 300 })
+  }
+
+
+
+  // document.querySelectorAll('.Header .menu .menu-item a').forEach((item) => {
+  //   const section = document.querySelector(item.getAttribute('href'))
+
+
+
+  //   if (
+  //     scrollTop.value + window.innerHeight / 2 > section.offsetTop &&
+  //     scrollTop.value + window.innerHeight / 2 <
+  //       section.offsetTop + section.offsetHeight
+  //   ) {
+  //     item.parentElement.classList.add('active')
+  //     activeFound = true
+  //   } else {
+  //     item.parentElement.classList.remove('active')
+  //   }
+  // })
 }
 
 function scrollTo(ev) {

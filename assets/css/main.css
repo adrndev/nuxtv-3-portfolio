@@ -28,11 +28,15 @@ html {
   }
 
   .section-title {
-    @apply text-[1.5rem] relative flex items-center gap-8 mb-8 font-monospace lowercase text-dark-gray;
+    @apply text-[1.5rem] relative flex items-center gap-8 mb-8 font-monospace lowercase;
   }
 
   .section-title::before,
   .section-title::after {
     @apply content-[''] bg-yellow-main h-[2px] flex-1;
+  }
+
+  .fadeIn {
+    @apply animate-[fadeIn_.3s_forwards]
   }
 }

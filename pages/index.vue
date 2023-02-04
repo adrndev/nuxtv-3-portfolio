@@ -1,38 +1,53 @@
 <script setup>
 // import { onMounted } from 'vue';
+const longScrollElement = ref(null)
 
 function scrollToFirstSection() {
   const firstSection = document.querySelector('.section')
   firstSection.scrollIntoView({ behavior: 'smooth', block: 'center' })
 }
 
-onMounted(() => {
-  document.addEventListener('scroll', () => {
-    const scrollY = window.scrollY
-    const titleElement = document.querySelector('.web-title h1')
-    
-    if(scrollY !== 0 && scrollY < 80) {
-      let textShadow = ''
-      for(let i = 0; i < scrollY; i++) {
-        textShadow += `${i}px ${i}px black`
+let scrollTop = ref(0), longScroll = ref(0)
 
-        if(i < scrollY - 1) {
-          textShadow += ', '
-        }
-      }
-      titleElement.style.textShadow = textShadow
-    } else if(scrollY == 0) {
-      titleElement.style.textShadow = ''
-    }
-})
-})
+const handleScrollChange = (value) => {
+  const longScrollStartingPosition = longScrollElement.value.offsetTop
+  scrollTop.value = value
+
+  if(value > longScrollStartingPosition && value < longScrollElement.value.offsetHeight) {
+    console.log('yay im scrolling');
+    longScroll.value = value - longScrollStartingPosition || 0
+  }
+}
+
+// onMounted(() => {
+//   document.addEventListener('scroll', () => {
+//     const scrollY = window.scrollY
+//     const titleElement = document.querySelector('.web-title h1')
+    
+//     if(scrollY !== 0 && scrollY < 80) {
+//       let textShadow = ''
+//       for(let i = 0; i < scrollY; i++) {
+//         textShadow += `${i}px ${i}px black`
+
+//         if(i < scrollY - 1) {
+//           textShadow += ', '
+//         }
+//       }
+//       titleElement.style.textShadow = textShadow
+//     } else if(scrollY == 0) {
+//       titleElement.style.textShadow = ''
+//     }
+// })
+// })
 </script>
 
 <template>
   <div class="wrap">
-    <Header />
-    <main class="Main bg-yellow-light">
-      <MyParticles />
+    <Header @scrollChanged="handleScrollChange" />
+    <main class="Main bg-yellow-light animate-[fadeIn_.3s_ease]">
+      <div id="particles-wrapper">
+        <MyParticles />
+      </div>
       <div class="Hero h-screen bg-dark-gray overflow-hidden flex items-center">
         <div
           class="web-title font-poppins text-gray-main w-full text-center lg:text-left lg:mx-32 2xl:mx-72"
@@ -72,39 +87,43 @@ onMounted(() => {
         />
       </div>
 
-      <section
-        id="about"
-        class="section about px-4 pt-16 md:pt-8 flex justify-center gap-x-12 items-center pb-40 flex-col-reverse md:flex-row bg-yellow-light"
-      >
-        <div class="about__content flex-1">
-          <h2
-            class="content__name text-6xl my-12 md:mt-0 md:mb-8 text-dark-gray text-center md:text-left font-jost text-shadow"
+      <div ref="longScrollElement" class="min-h-[400vh]">
+        <div id="about-me" class="sticky top-8">
+          <section
+            id="about"
+            class="section about px-4 pt-16 md:pt-8 flex justify-center gap-x-12 items-center pb-40 flex-col-reverse md:flex-row bg-yellow-light"
           >
-            Adrian Jaskot
-          </h2>
-          <p
-            class="content__desc text-xl max-w-2xl px-4 md:px-0 text-justify md:text-left font-roboto"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-            tristique suscipit vestibulum. Aenean eu justo id lorem tincidunt
-            fermentum. Pellentesque pretium, urna non ullamcorper hendrerit,
-            turpis tortor varius dui, sit amet euismod ante enim non mauris.
-            Cras tempor ipsum eget nunc sollicitudin, non feugiat justo
-            consectetur.
-          </p>
-        </div>
-        <div class="about__photo w-80 text-center">
-          <img
-            loading="lazy"
-            class="rounded-full w-80 h-80 inline-block"
-            src="https://picsum.photos/200/300"
-            alt="Jaskot Adrian"
-          />
-        </div>
-      </section>
+            <div class="about__content flex-1">
+              <h2
+                class="content__name text-6xl my-12 md:mt-0 md:mb-8 text-dark-gray text-center md:text-left font-jost text-shadow"
+              >
+                Adrian Jaskot
+              </h2>
+              <p
+                class="content__desc text-xl max-w-2xl px-4 md:px-0 text-justify md:text-left font-roboto"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+                tristique suscipit vestibulum. Aenean eu justo id lorem tincidunt
+                fermentum. Pellentesque pretium, urna non ullamcorper hendrerit,
+                turpis tortor varius dui, sit amet euismod ante enim non mauris.
+                Cras tempor ipsum eget nunc sollicitudin, non feugiat justo
+                consectetur.
+              </p>
+            </div>
+            <div class="about__photo w-80 text-center">
+              <img
+                loading="lazy"
+                class="rounded-full w-80 h-80 inline-block"
+                src="https://picsum.photos/200/300"
+                alt="Jaskot Adrian"
+              />
+            </div>
+          </section>
 
-      <div id="stack" class="showcase-sections pb-32 md:pb-60 bg-yellow-light sticky top-0">
-        <Showcase />
+          <div id="stack" class="showcase-sections pb-32 md:pb-60 bg-yellow-light md:sticky md:top-[150px]">
+            <Showcase :longScroll="longScroll" />
+          </div>
+        </div>
       </div>
 
       <div class="polygon-clip bg-dark-gray border-dark-gray"></div>

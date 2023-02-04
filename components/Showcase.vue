@@ -140,6 +140,10 @@ const sections = [
   },
 ]
 
+const props = defineProps({
+  longScroll: Number
+})
+
 const svgs = import.meta.globEager('/assets/icons/**/*.svg')
 </script>
 
@@ -151,22 +155,24 @@ const svgs = import.meta.globEager('/assets/icons/**/*.svg')
       v-for="section in sections"
       class="pb-8 flex-1 mb-8 md:mb-0 border-b-2 border-r-2 border-l-2 border-yellow-main shadow-[4px_4px_#fff9d3,6px_6px_black]"
     >
-      <div class="section-title mt-[-17px] text-shadow">{{ section.title }}</div>
+      <h2 class="section-title mt-[-17px] text-shadow text-dark-gray">{{ section.title }}</h2>
       <div
         class="bubbles justify-center grid gap-1 grid-cols-[repeat(auto-fit,minmax(64px,1fr))]"
       >
         <div
-          v-for="item in section.items"
+          v-for="(item, index) in section.items"
           :key="item.title"
-          class="bubble relative w-16 h-16 p-4 m-auto box-border"
+          class="bubble relative w-16 h-16 p-4 m-auto box-border opacity-0"
           :title="item.title"
           tabindex="0"
           :data-title="item.title"
+          :class="{ 'fadeIn': props.longScroll > index * 128}"
         >
           <img
             :src="svgs[`/assets/icons/${item.path}`].default"
             :alt="item.title + ' icon'"
             class="transition-[transform] duration-300 grayscale"
+            loading="lazy"
           />
         </div>
       </div>
