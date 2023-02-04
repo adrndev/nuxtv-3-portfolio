@@ -98,14 +98,14 @@ onMounted(() => {
 
 <template>
   <header
-    class="Header sticky text-gray-main transition-colors duration-300 bg-[transparent] top-0 z-[100] mt-[-100px] box-border h-[100px] text-[1.5rem] max-h-[120px]"
+    class="Header sticky text-gray-main transition-colors duration-300 bg-[transparent] top-0 z-[100] mt-[-80px] md:mt-[-100px] box-border h-[80px] md:h-[100px] text-[1.5rem] max-h-[120px]"
     :class="{ scrolled }"
   >
     <div
       class="header-wrapper px-8 md:px-24 font-inconsolata flex justify-between h-full items-center transition-[margin-top] duration-300"
     >
       <div class="logo-wrapper">
-        <Logo :class="{ dark: scrolled }" />
+        <Logo :class="{ dark: scrolled }"/>
         <!-- <img src="@/assets/images/logo.svg" class="w-full h-auto" alt="Logo of Adrian Jaskot's portfolio"> -->
       </div>
       <nav class="menu hidden md:block">

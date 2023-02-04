@@ -87,8 +87,8 @@ const handleScrollChange = (value) => {
         />
       </div>
 
-      <div ref="longScrollElement" class="min-h-[400vh]">
-        <div id="about-me" class="sticky top-8">
+      <div ref="longScrollElement" class="md:min-h-[400vh]">
+        <div id="about-me" class="md:sticky md:top-8">
           <section
             id="about"
             class="section about px-4 pt-16 md:pt-8 flex justify-center gap-x-12 items-center pb-40 flex-col-reverse md:flex-row bg-yellow-light"

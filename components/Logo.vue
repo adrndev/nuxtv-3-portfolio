@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="Logo w-24">
+  <div class="Logo w-16 md:w-24">
     <svg
       class="w-full h-auto"
       xmlns="http://www.w3.org/2000/svg"

@@ -162,11 +162,11 @@ const svgs = import.meta.globEager('/assets/icons/**/*.svg')
         <div
           v-for="(item, index) in section.items"
           :key="item.title"
-          class="bubble relative w-16 h-16 p-4 m-auto box-border opacity-0"
+          class="bubble relative w-16 h-16 p-4 m-auto box-border md:opacity-0 opacity-100 transition-opacity"
           :title="item.title"
           tabindex="0"
           :data-title="item.title"
-          :class="{ 'fadeIn': props.longScroll > index * 128}"
+          :class="{ 'opacity-100': props.longScroll > (index + 1) * 128}"
         >
           <img
             :src="svgs[`/assets/icons/${item.path}`].default"
